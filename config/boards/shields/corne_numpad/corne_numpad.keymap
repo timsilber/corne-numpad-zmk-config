@@ -1,20 +1,24 @@
 /*
  * Corne right half — standalone wireless numpad
  *
- * Key positions (21 keys):
- *   [ 0][ 1][ 2][ 3][ 4][ 5]
- *   [ 6][ 7][ 8][ 9][10][11]
- *   [12][13][14][15][16][17]
- *                [18][19][20]
+ * Physical key positions (21 keys, Corne column stagger):
+ *
+ *     [ 0][ 1][ 2][ 3][ 4][ 5]
+ *     [ 6][ 7][ 8][ 9][10][11]
+ *     [12][13][14][15][16][17]
+ *              [18][19][20]
  *
  * Layer 0 — Numpad:
- *   [ / ][ 7 ][ 8 ][ 9 ][ - ][Bksp]
- *   [ * ][ 4 ][ 5 ][ 6 ][ + ][ =  ]
- *   [Num][ 1 ][ 2 ][ 3 ][ . ][Ent ]
- *              [Fn ][ 0 ][Ent ]
+ *     [   ][ 7 ][ 8 ][ 9 ][ - ][Bksp]
+ *     [   ][ 4 ][ 5 ][ 6 ][ + ][ /  ]
+ *     [   ][ 1 ][ 2 ][ 3 ][ * ][Ent ]
+ *              [Fn ][Ent ][ 0 ]
  *
- * Layer 1 — Fn (hold thumb-left):
- *   BT management, bootloader, reset
+ * Layer 1 — Fn (hold inner thumb):
+ *     [   ][BT1][BT2][BT3][ . ][ =  ]
+ *     [   ][BT4][BT5][   ][   ][BTCL]
+ *     [   ][   ][   ][   ][   ][Boot]
+ *              [   ][   ][RST ]
  */
 
 #include <behaviors.dtsi>
@@ -28,20 +32,20 @@
         numpad {
             display-name = "Numpad";
             bindings = <
-                &kp SLASH   &kp N7  &kp N8  &kp N9  &kp MINUS  &kp BSPC
-                &kp ASTRK   &kp N4  &kp N5  &kp N6  &kp PLUS   &kp EQUAL
-                &kp KP_NUM  &kp N1  &kp N2  &kp N3  &kp DOT    &kp ENTER
-                                    &mo 1   &kp N0  &kp ENTER
+                &none  &kp N7  &kp N8  &kp N9  &kp MINUS  &kp BSPC
+                &none  &kp N4  &kp N5  &kp N6  &kp PLUS   &kp SLASH
+                &none  &kp N1  &kp N2  &kp N3  &kp ASTRK  &kp ENTER
+                               &mo 1   &kp ENTER  &kp N0
             >;
         };
 
         fn {
             display-name = "Fn";
             bindings = <
-                &bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-                &trans        &trans         &trans         &trans         &trans         &trans
-                &bootloader   &trans         &trans         &trans         &trans         &sys_reset
-                                             &trans         &trans         &trans
+                &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &kp DOT    &kp EQUAL
+                &none  &bt BT_SEL 3  &bt BT_SEL 4  &trans         &trans      &bt BT_CLR
+                &none  &trans        &trans         &trans         &trans      &bootloader
+                                     &trans         &trans         &sys_reset
             >;
         };
 
