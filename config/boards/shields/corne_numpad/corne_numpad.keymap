@@ -44,5 +44,10 @@
                                              &trans         &trans         &trans
             >;
         };
+
+        /* Reserved layers for ZMK Studio runtime editing */
+        extra_1 { status = "reserved"; };
+        extra_2 { status = "reserved"; };
+        extra_3 { status = "reserved"; };
     };
 };
