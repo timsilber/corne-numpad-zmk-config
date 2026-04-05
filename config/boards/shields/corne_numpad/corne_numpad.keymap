@@ -1,0 +1,48 @@
+/*
+ * Corne right half — standalone wireless numpad
+ *
+ * Key positions (21 keys):
+ *   [ 0][ 1][ 2][ 3][ 4][ 5]
+ *   [ 6][ 7][ 8][ 9][10][11]
+ *   [12][13][14][15][16][17]
+ *                [18][19][20]
+ *
+ * Layer 0 — Numpad:
+ *   [ / ][ 7 ][ 8 ][ 9 ][ - ][Bksp]
+ *   [ * ][ 4 ][ 5 ][ 6 ][ + ][ =  ]
+ *   [Num][ 1 ][ 2 ][ 3 ][ . ][Ent ]
+ *              [Fn ][ 0 ][Ent ]
+ *
+ * Layer 1 — Fn (hold thumb-left):
+ *   BT management, bootloader, reset
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        numpad {
+            display-name = "Numpad";
+            bindings = <
+                &kp SLASH   &kp N7  &kp N8  &kp N9  &kp MINUS  &kp BSPC
+                &kp ASTRK   &kp N4  &kp N5  &kp N6  &kp PLUS   &kp EQUAL
+                &kp KP_NUM  &kp N1  &kp N2  &kp N3  &kp DOT    &kp ENTER
+                                    &mo 1   &kp N0  &kp ENTER
+            >;
+        };
+
+        fn {
+            display-name = "Fn";
+            bindings = <
+                &bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+                &trans        &trans         &trans         &trans         &trans         &trans
+                &bootloader   &trans         &trans         &trans         &trans         &sys_reset
+                                             &trans         &trans         &trans
+            >;
+        };
+    };
+};

@@ -1,0 +1,12 @@
+# Copyright (c) 2024 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_CORNE_NUMPAD
+
+config ZMK_KEYBOARD_NAME
+    default "Corne Numpad"
+
+# NOTE: ZMK_SPLIT is intentionally NOT set here.
+# This is a standalone unibody device using only the right half hardware.
+
+endif
